@@ -1,7 +1,7 @@
 {
   "type": "kafka",
   "dataSchema": {
-    "dataSource": "DEMO2",
+    "dataSource": "DEMO",
     "parser": {
       "type": "string",
       "parseSpec": {
@@ -106,7 +106,7 @@
     "resetOffsetAutomatically": true
   },
   "ioConfig": {
-    "topic": "drd-bn-oprt-5",
+    "topic": "demo",
     "consumerProperties": {
       "bootstrap.servers": "192.168.1.114:9092"
     },
