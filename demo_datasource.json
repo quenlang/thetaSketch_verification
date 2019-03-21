@@ -1,0 +1,118 @@
+{
+  "type": "kafka",
+  "dataSchema": {
+    "dataSource": "DEMO2",
+    "parser": {
+      "type": "string",
+      "parseSpec": {
+        "format": "json",
+        "timestampSpec": {
+          "column": "timestamp",
+          "format": "posix"
+        },
+        "dimensionsSpec": {
+          "dimensions": [
+              "oprt_id"
+          ]
+        }
+      }
+    },
+    "metricsSpec": [
+      {
+        "name": "user_no",
+        "fieldName": "user_no",
+        "type": "thetaSketch"
+      },
+      {
+        "name": "user_no_hll",
+        "fieldName": "user_no",
+        "type": "HLLSketchBuild"
+      },
+      {
+        "name": "error_user_no",
+        "fieldName": "error_user_no",
+        "type": "thetaSketch"
+      },
+      {
+        "name": "error_user_no_hll",
+        "fieldName": "error_user_no",
+        "type": "HLLSketchBuild"
+      },
+      {
+        "name": "business_no",
+        "fieldName": "business_no",
+        "type": "thetaSketch"
+      },
+      {
+        "name": "business_no_hll",
+        "fieldName": "business_no",
+        "type": "HLLSketchBuild"
+      },
+      {
+        "name": "error_business_no",
+        "fieldName": "error_business_no",
+        "type": "thetaSketch"
+      },
+      {
+        "name": "error_business_no_hll",
+        "fieldName": "error_business_no",
+        "type": "HLLSketchBuild"
+      },
+      {
+        "name": "success_business_no",
+        "fieldName": "success_business_no",
+        "type": "thetaSketch"
+      },
+      {
+        "name": "success_business_no_hll",
+        "fieldName": "success_business_no",
+        "type": "HLLSketchBuild"
+      },
+      {
+        "name": "prefix_error_business_no",
+        "fieldName": "prefix_error_business_no",
+        "type": "thetaSketch"
+      },
+      {
+        "name": "prefix_error_business_no_hll",
+        "fieldName": "prefix_error_business_no",
+        "type": "HLLSketchBuild"
+      },
+      {
+        "name": "prefix_success_business_no",
+        "fieldName": "prefix_success_business_no",
+        "type": "thetaSketch"
+      },
+      {
+        "name": "prefix_success_business_no_hll",
+        "fieldName": "prefix_success_business_no",
+        "type": "HLLSketchBuild"
+      },
+      {
+        "name": "count",
+        "fieldName": "count",
+        "type": "longSum"
+      }
+    ],
+    "granularitySpec": {
+      "type": "uniform",
+      "segmentGranularity": "SIX_HOUR",
+      "queryGranularity": "MINUTE"
+    }
+  },
+  "tuningConfig": {
+    "type": "kafka",
+    "maxRowsPerSegment": 5000000,
+    "resetOffsetAutomatically": true
+  },
+  "ioConfig": {
+    "topic": "drd-bn-oprt-5",
+    "consumerProperties": {
+      "bootstrap.servers": "192.168.1.114:9092"
+    },
+    "taskCount": 1,
+    "taskDuration": "PT30M",
+    "replicas": 1,
+    "useEarliestOffset": true
+  }
+}
